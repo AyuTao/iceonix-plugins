@@ -1,0 +1,34 @@
+{
+  "name": "iceonix",
+  "version": "0.8.1",
+  "description": "在 Codex 里确认冰爪创作项目、扫码登录平台、跟进发布进度；真实发布由冰爪 App 在你的 Mac 上执行。",
+  "author": {
+    "name": "Iceonix"
+  },
+  "license": "GPL-3.0-only",
+  "keywords": [
+    "iceonix",
+    "publishing",
+    "creator",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "冰爪 Iceonix",
+    "shortDescription": "在对话里确认项目、处理登录、跟进发布",
+    "longDescription": "打开冰爪工作台核对 Markdown 正文与图文草稿、扫码登录各平台、逐平台查看发布进度并在确认后重试失败平台。账号密码不经过 AI，真实发布前会再次向你确认。需要先安装并运行冰爪 App。",
+    "developerName": "Iceonix",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "打开我最近的冰爪项目，我要确认正文和发布文案",
+      "看看我的冰爪各平台登录状态，需要时让我扫码",
+      "看看冰爪最近一批发布的进度"
+    ],
+    "brandColor": "#3B9FF5"
+  }
+}

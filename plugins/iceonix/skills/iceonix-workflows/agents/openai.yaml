@@ -1,0 +1,4 @@
+interface:
+  display_name: "冰爪创作与发布"
+  short_description: "连接冰爪项目库、平台登录、图文文档编辑与安全发布工作流"
+  default_prompt: "使用 $iceonix-workflows 检查一个冰爪项目，确认内容后安全发布。"

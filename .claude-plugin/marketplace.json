@@ -1,0 +1,17 @@
+{
+  "name": "iceonix",
+  "owner": {
+    "name": "Iceonix"
+  },
+  "metadata": {
+    "description": "冰爪 Iceonix 官方插件：在 AI 工具里确认创作项目、处理平台登录、跟进发布进度。需要先安装冰爪 App。"
+  },
+  "plugins": [
+    {
+      "name": "iceonix",
+      "source": "./plugins/iceonix",
+      "description": "在 AI 对话里确认冰爪创作项目、扫码登录平台、跟进发布进度",
+      "category": "productivity"
+    }
+  ]
+}

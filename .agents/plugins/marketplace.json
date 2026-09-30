@@ -1,0 +1,20 @@
+{
+  "name": "iceonix",
+  "interface": {
+    "displayName": "冰爪 Iceonix"
+  },
+  "plugins": [
+    {
+      "name": "iceonix",
+      "source": {
+        "source": "local",
+        "path": "./plugins/iceonix"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
