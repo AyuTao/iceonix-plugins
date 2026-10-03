@@ -56,6 +56,14 @@ description: 连接 Iceonix（冰爪）本地项目库、Markdown/图文创作�
 - 展示结构化逐平台结果，不能用一个平台失败覆盖其它平台成功。
 - MCP 失败后禁止用 CLI、shell 或浏览器重投，也不要手工修改 `iceonix.json`。
 
+## 模板视频
+
+没有拍摄素材的宣传、资讯、知识视频用冰爪内置模板出片，用户不用装任何工具；完整分镜格式见 `iceonix-video` 技能。
+
+1. 先和用户确认旁白稿，再 `analyze_music` 拿鼓点与段落，`synthesize_speech` 逐句配音（同一音色）。
+2. 写 `storyboard.json`，`render_video(quality=preview)` 出低清预览；未完成用 `get_video_render(renderId)` 等待，先处理 `warnings`。
+3. 按用户在对话里的意见改分镜、重新预览；确认后 `quality=final` 出正片。需要进项目时 `add_project_asset` + `create_project_work`，发布前照常让用户确认。
+
 ## 录制剪辑
 
 1. 用 `get_editor_project` 获取当前录制工程、剪辑 revision、转写与鼠标事件。剪辑 revision 与项目文稿 revision 不通用。所有操作时间为原素材秒数，追焦焦点是左上原点的 0～1 坐标。
