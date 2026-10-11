@@ -1,6 +1,6 @@
 # 冰爪 Iceonix 插件
 
-在 Claude Code、Codex 等 AI 工具里直接操作[冰爪](https://iceonix.com)：确认创作项目的正文和发布文案、扫码登录各平台、跟进发布进度。AI 负责写和改，真实发布由你 Mac 上的冰爪 App 在 Safari / 微信里执行。
+在 Claude Code、Codex 等 AI 工具里直接操作[冰爪](https://iceonix.com)：剪辑冰爪里打开的视频、排版公众号文章、配音和做视频、扫码登录各平台、跟进发布进度。AI 负责想和写，剪辑、配音和真实发布由你 Mac 上的冰爪 App 执行。
 
 > 本仓库由冰爪主仓库自动同步，请不要直接在这里提交修改。
 
@@ -10,7 +10,7 @@
 2. 打开一次冰爪。App 启动时会把 MCP 桥接程序同步到 `~/Library/Application Support/Iceonix/HermesMCP/iceonix`，插件通过它和 App 通信。
 3. 发布前在冰爪里完成平台登录和辅助功能授权。
 
-插件只包含 MCP 配置和使用说明（Skill），不包含可执行文件，也不会收集账号密码。
+插件只包含 MCP 配置和使用说明（Skill），不包含可执行文件，也不会收集账号密码。使用说明就是冰爪自带的 `iceonix` 技能，和在冰爪 App 里点「接入」装的是同一份。
 
 ## 安装
 
@@ -30,14 +30,16 @@ codex plugin add iceonix@iceonix
 
 也可以在 Codex 里输入 `/plugins`，找到「冰爪 Iceonix」安装。
 
-**Claude 桌面版、WorkBuddy**
+**Claude 桌面版、WorkBuddy、Antigravity**
 
-在冰爪 App 的「设置 → Agent 连接」里点对应工具的「连接」，按提示重启即可。
+在冰爪 App 的「设置 → Agent 与接入」里点对应工具的「接入」，按提示重启即可。Claude Code 和 Codex 也可以这样接入；已经在冰爪里接入过的工具不用再装插件，两种方式选一种。
 
 ## 怎么用
 
 直接在对话里说，例如：
 
+- 把冰爪里正在剪的这条口误和停顿剪掉，剪好交给达芬奇精剪
+- 把这个项目写成公众号文章，我在冰爪里看排版
 - 打开我最近的冰爪项目，我要确认正文和发布文案
 - 看看我的冰爪各平台登录状态，需要时让我扫码
 - 看看冰爪最近一批发布的进度
@@ -70,7 +72,7 @@ codex plugin marketplace upgrade           # Codex
 
 ## English
 
-Iceonix plugin for Claude Code and Codex. It lets your AI assistant review Iceonix projects, handle platform QR logins and follow publishing progress, while the Iceonix macOS app performs the actual publishing on your Mac. Install the app from [iceonix.com](https://iceonix.com) and open it once, then:
+Iceonix plugin for Claude Code and Codex. It lets your AI assistant edit the video open in Iceonix, lay out WeChat articles, review projects, handle platform QR logins and follow publishing progress, while the Iceonix macOS app does the editing and publishing on your Mac. Install the app from [iceonix.com](https://iceonix.com) and open it once, then:
 
 ```bash
 claude plugin marketplace add AyuTao/iceonix-plugins && claude plugin install iceonix@iceonix
