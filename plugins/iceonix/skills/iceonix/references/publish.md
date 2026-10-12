@@ -39,13 +39,18 @@
 | 快手 | `kuaishou` | |
 | YouTube | `youtube` | 仅视频 |
 | Instagram | `instagram` | 图片帖与视频；没有二维码，掉登录时冰爪自动点已保存账号的「继续」，要密码时由用户在 Safari 完成；不支持自定义封面、原创声明和位置，批量时冰爪自动不传 |
-| Facebook | `facebook` | 图片帖与视频，只发个人时间线，不代发公共主页或群组；不支持封面、原创声明、位置和定时 |
+| Facebook 个人号 | `facebook` | 图片帖与视频，只发个人时间线，不代发群组；不支持封面、原创声明、位置和定时 |
+| Facebook 公共主页 | `facebookPage` | 图片帖与视频（竖屏视频会成为 Reels），发到用户在冰爪平台页选定的主页；默认关闭，需用户在平台页开启；不传 `facebookAudience` |
 | X（推特） | `x` | 1～4 张图、视频或文字推文；没有二维码，由用户在 Safari 手动登录；按账号类型限字（普通 280，Premium 25,000，加权计字），普通账号视频最长 140 秒；不支持封面、原创声明、位置和定时 |
 | 公众号 | `wechatMP` | 仅图片帖，保存私有贴图草稿，绝不群发 |
 
 公众号是驼峰 `wechatMP`，传小写会报「不支持的平台」。
 
 **Facebook 受众**：默认公开（`public`）。只有用户明确要求仅好友可见时，才在发布工具传 `facebookAudience: "friends"`（CLI `--facebook-audience friends`），其它平台不要传。冰爪会点选分享对象并在发帖前回读，对不上就停止。`title` 会并入帖子正文。九张图时后四张的顺序冰爪无法逐张核验，汇报时不要说成已逐张核对。
+
+**Facebook 公共主页**：用户说「发到我的 Facebook 主页 / 公共主页」时用 `facebookPage`；「个人号 / 时间线」用 `facebook`；两者都要就一起列。工具不能指定发哪个主页，冰爪发到平台页选定的那个；返回「检测到多个主页」时，请用户先在冰爪平台页的「Facebook 公共主页」卡片选择，不要重试。
+
+**Facebook Reels**：用户明确说「发成 Reels」时，对 `facebook` / `facebookPage` 的视频传 `facebookReels: true`（CLI `--facebook-reels`）；冰爪发不成 Reels 会停止，原样汇报即可。没说就不传：主页视频本来就会成为 Reels，个人号发普通视频帖。图文不要传。快拍（24 小时消失）冰爪不支持。
 
 **展开平台清单：**
 
