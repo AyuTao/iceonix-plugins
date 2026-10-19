@@ -16,7 +16,7 @@ description: 冰爪（Iceonix）本机创作与发布执行器的使用说明：
 | 剪冰爪里正在剪的视频：删口误和停顿、推近、改画面样式、导出成片、交给达芬奇精剪 | [剪辑与达芬奇](references/editing.md) |
 | 转文字、生成或修改字幕、配音、克隆声音、分说话人 | [字幕与配音](references/speech.md) |
 | 写文章、公众号长文、排版主题、封面、存公众号草稿、博客 | [公众号与长文](references/article.md) |
-| 发布视频或图片帖到各平台、检查和扫码登录、重发和重试 | [发布与登录](references/publish.md) |
+| 发布视频或图片帖到各平台、检查和扫码登录、重发和重试、读自己笔记的评论并以作者身份回一条 | [发布与登录](references/publish.md) |
 | 用文案、截图和音乐做宣传片、资讯或知识视频，把推文或热点做成视频 | [做视频](references/video.md) |
 | 数字人口播、照片做成说话视频、对口型、AI 生成产品或情景镜头 | [数字人与 AI 视频](references/digital-human.md) |
 | 把定稿的口播脚本交给用户开拍（提词器），或发到手机 UP100 | [口播稿与开拍](references/narration.md) |
