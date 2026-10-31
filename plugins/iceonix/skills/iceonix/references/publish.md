@@ -103,14 +103,14 @@ find ~/.hermes/cache/videos ~/.hermes/cache/documents -type f \
 **作者首评：**
 
 - 视频和图文项目都可以写作者首评：`update_project_publish_copy` 的 `firstComments`（键为平台 ID 或 `default`，每个平台最多 3 条），或 `save_up100_plan` 的 `firstComments`。
-- 写了几条就发几条：第一条发成作者首评，其余等它出现后依次回复在它下面，每条只发一次；不想发的就别写（`firstCommentPicks` 已弃用，传了也会被忽略）。小红书视频和图文、视频号和抖音视频在发布成功、作品过审后，由冰爪在 Mac 空闲时自动发；视频号的首评发出后自动置顶。其余平台和带链接的条目只放在发布通知里，由用户手动发。
+- 写了几条就发几条：第一条发成作者首评，其余等它出现后依次回复在它下面，每条只发一次；不想发的就别写（`firstCommentPicks` 已弃用，传了也会被忽略）。小红书、视频号、抖音的视频和图文在发布成功、作品过审后，由冰爪在 Mac 空闲时自动发；视频号的首评发出后自动置顶。其余平台和带链接的条目只放在发布通知里，由用户手动发。
 - 写法：像作者本人在评论区补一句，例如补充信息、抛个问题引导互动、预告下一期。一两句话，不堆标签。首评不要带链接、二维码，也不要写「看主页」「私信我」这类导流；带链接的不会自动发。
 - 写了首评就默认自动发，不用另开开关。用户明确不要自动发时才传 `firstCommentAuto: false`；用户也可以在冰爪的发布面板或项目详情里把首评清空。
 - 首评结果在 `get_project` 返回的 `project.publish_results.<平台>.first_comment` 里（`waiting` / `posted` / `needs_review` / `expired` / `stopped` / `skipped`）。汇报时照录，不要自己去平台核验或补发评论。
 
 **自己作品的评论（小红书、视频号、抖音）：**
 
-- `list_platform_posts(platform?)` 支持 `platform = xhs / wechat / douyin`。列出网页版主页或评论管理页上已加载的自己的作品（标题、`postId`、创建时间、评论数等，小红书包含 noteID 与链接），不会翻完全部历史作品。
+- `list_platform_posts(platform?)` 支持 `platform = xhs / wechat / douyin`。列出网页版主页或评论管理页上已加载的自己的作品（标题、`postId`、创建时间、评论数等，小红书包含 noteID 与链接，视频号同时列视频和图文，`contentType` 标明类型），不会翻完全部历史作品。
 - `get_platform_post` 读一条自己的作品：标题、发布时间、评论数和评论列表（评论者、是否作者、内容、时间等）。小红书可通过 `url` 或 `postId`，视频号、抖音必须传入 `list_platform_posts` 返回的 `postId`。`commentsComplete` 为 false 时，列表只是当前加载出来的部分。
 - 要找新评论，就拿 `postedAt` 和你上次读取的时间比；冰爪不记录哪些评论已读过。
 - `post_platform_comment` 只能以作者身份在自己的作品下发一条评论，用户确认或预先授权后传 `confirmComment: true`。小红书可通过 `url` 或 `postId`，视频号、抖音必须传入 `postId`。支持通过 `replyTo` 进行跟评（三平台均支持）。**MCP 发的评论不会自动置顶**。一次只发一条，不要循环或批量发；两条至少隔 60 秒，24 小时最多 30 条，带链接会被拒绝。
