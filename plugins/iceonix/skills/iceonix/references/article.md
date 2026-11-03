@@ -121,7 +121,7 @@ generate_article_cover(title="文章标题", body="Markdown 正文", style="用�
 - `save_article_draft` 的 `title`、`body`、`themeName` 必填；`summary` 最多 120 字。
 - `author` 省略时用冰爪设置的默认作者，传值逐篇覆盖，传空字符串表示不署名。公众号作者最多 8 个字。声明原创时作者必填：既没传作者、冰爪也没设默认作者时会被拒绝，先问用户署名。
 - `declareOriginal` 由用户决定，不得默认改为 `true`。
-- `publish_article.platform` 取 `wechatMP`（公众号草稿，缺省）或 `x`（把同一篇文章发成 X 推文：标题加正文转纯文本，封面在前、正文插图补足，最多 4 张）。`x` 会直接公开发推，属于真实发布，要按共同规则取得授权，首次先预演；普通账号限 280 加权字，长文需要 Premium。用户要「公众号和 X 都发」时，对同一正文来源分别调用两次，结果分开汇报。
+- `publish_article.platform` 取 `wechatMP`（公众号草稿，缺省）或 `x`（把同一篇文章发成 X 推文：标题加正文转纯文本，封面在前、正文插图补足，最多 4 张）。`x` 会直接公开发推，属于真实发布，要按共同规则取得授权，首次先预演；普通账号限 280 加权字，长文需要 Premium。`toutiao` 把同一篇文章发成今日头条文章（标题须 2～30 字，正文连图片排版粘贴，有封面用单图），同样直接公开发布，要授权并带 `confirmPublish`，首次先预演。用户要「公众号和 X 都发」时，对同一正文来源分别调用两次，结果分开汇报。
 - `articlePath` 必须来自本次 `save_article_draft` 的结果，`documentId` 必须来自 `get_project`。
 - 独立文章的 `.md` 会出现在冰爪公众号编辑页左侧草稿列表，预演和正式保存复用同一个 `articlePath`。
 
