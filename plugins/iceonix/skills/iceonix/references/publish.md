@@ -107,6 +107,7 @@ find ~/.hermes/cache/videos ~/.hermes/cache/documents -type f \
 - 写了几条就发几条：第一条发成作者首评，其余等它出现后依次回复在它下面，每条只发一次；不想发的就别写（`firstCommentPicks` 已弃用，传了也会被忽略）。小红书、视频号、抖音的视频和图文在发布成功、作品过审后，由冰爪在 Mac 空闲时自动发；视频号的首评发出后自动置顶。其余平台和带链接的条目只放在发布通知里，由用户手动发。
 - 写法：像作者本人在评论区补一句，例如补充信息、抛个问题引导互动、预告下一期。一两句话，不堆标签。首评不要带链接、二维码，也不要写「看主页」「私信我」这类导流；带链接的不会自动发。
 - 写了首评就默认自动发，不用另开开关。用户明确不要自动发时才传 `firstCommentAuto: false`；用户也可以在冰爪的发布面板或项目详情里把首评清空。
+- 直接发布时也能带首评：`publish_video` 传 `firstComments`（字符串数组），`batch_publish_image_carousel` 传按平台的 `firstComments`（键为平台 ID 或 `default`），远程接入的这两个工具同样支持。只有小红书、视频号、抖音的视频和图文能带，其它平台、带链接、超过 3 条或超过 500 字都会在入队前被拒绝，按报错改好再发；预演不发首评。这样发的首评结果看 `get_publish_batch` 各平台的 `firstComments`（`waiting_publish` 等发布、`waiting` 等待发送、`posted`、`needs_review`、`expired`、`stopped`、`not_sent`、`dry_run`），顶层 `firstCommentsPending=true` 时过一阵再查同一批次。
 - 首评结果在 `get_project` 返回的 `project.publish_results.<平台>.first_comment` 里（`waiting` / `posted` / `needs_review` / `expired` / `stopped` / `skipped`）。汇报时照录，不要自己去平台核验或补发评论。
 
 **自己作品的评论（小红书、视频号、抖音）：**
@@ -154,6 +155,7 @@ find ~/.hermes/cache/videos ~/.hermes/cache/documents -type f \
 - 最终消息只写总体成功、失败数量，并列出失败、待处理或结果不明的平台和简短原因。成功平台由冰爪的结果卡展示，不再逐项复述标题、正文和图片。
 - 只照录工具返回的逐平台状态，网页上的按钮或页面变化不能算成功。dry-run 通过不能说成已发布。
 - 结果异常或互相矛盾时，先只读核验原批次和原项目；核实不了就停下如实报告。已成功、待核验或结果未知的平台不得自动重投。明确失败也只报告，用户同意后用 `retry_publish_batch` 在原项目重试（成功平台会跳过），不得用 `projectPath: "new"` 为同一作品另建项目补发。
+- 返回「已在某时发过同一份素材」或「正在发同一份素材」是冰爪的防重复拦截：不要换 `requestId` 重投，也不要自动改用 `force`，照原样告诉用户；用户明确要再发一次时才按下面的「有意重发」处理。
 
 **有意重发**：只有用户明确说「再发一次」「强制重发」时，才用 `republish_batch(batchId, platforms, requestId)` 重发原批次里选定的平台，再用 `await_publish_batch` 等新批次。重新提供完整素材时，也可在发布工具传 `force=true` 加新 `requestId`。不得因等待、网络错误或结果未知自动 `force`；原素材已删、运行中或待核验时不得绕过。
 
