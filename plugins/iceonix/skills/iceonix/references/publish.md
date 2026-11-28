@@ -43,9 +43,12 @@
 | Facebook 公共主页 | `facebookPage` | 图片帖与视频（竖屏视频会成为 Reels），发到用户在冰爪平台页选定的主页；默认关闭，需用户在平台页开启；不传 `facebookAudience` |
 | X（推特） | `x` | 1～4 张图、视频或文字推文；没有二维码，由用户在 Safari 手动登录；按账号类型限字（普通 280，Premium 25,000，加权计字），普通账号视频最长 140 秒；不支持封面、原创声明、位置和定时 |
 | 今日头条 | `toutiao` | 视频（标题 30 字、简介 400 字，可传封面）、1～9 张图的微头条、文章（走 `publish_article`）；话题最多 10 个，只会选头条已有的话题，没有的自动跳过；「头条首发」一律不勾；不支持原生定时和位置；登录方式由用户在冰爪平台页选（微信登录 / Safari 已存密码 / 头条 App 扫码），扫码时 `start_login` 返回二维码 |
+| TikTok | `tiktok` | 视频与 1～9 张图片帖；视频没有标题栏，`title` 会并入描述，图片帖另有 90 字标题；描述加话题合计 4000 字，话题最多 5 个；掉登录时冰爪默认先用用户选定的谷歌账号自动登回（第一次要用户在 Mac 上选一次号），没成功或用户改成扫码时 `start_login` 返回二维码，用手机 TikTok App 扫；任一平台声明 `ai_generated` 时冰爪会打开 TikTok 的「AI 生成」标签；不支持封面、原创声明、位置和定时，批量时冰爪自动不传；网页界面英文、简体、繁体都行 |
 | 公众号 | `wechatMP` | 仅图片帖，保存私有贴图草稿，绝不群发 |
 
 公众号是驼峰 `wechatMP`，传小写会报「不支持的平台」。
+
+**TikTok 评论与商业声明**：默认允许评论和二次创作、不做商业内容声明。用户明确要求时才传：`tiktokAllowComments: false` 关评论，`tiktokAllowReuse: false` 不让别人合拍、拼接（CLI `--tiktok-no-comments`、`--tiktok-no-reuse`）；`tiktokDisclosure` 只在用户说明这条是推广时传，`your_brand` 是推广自己或自己的生意，`branded_content` 是替别的品牌推广（作品标「付费合作」，等于同意 TikTok 品牌内容政策），`both` 两项都勾（CLI `--tiktok-disclosure`）。冰爪发布前回读，对不上就停止。
 
 **Facebook 受众**：默认公开（`public`）。只有用户明确要求仅好友可见时，才在发布工具传 `facebookAudience: "friends"`（CLI `--facebook-audience friends`），其它平台不要传。冰爪会点选分享对象并在发帖前回读，对不上就停止。`title` 会并入帖子正文。九张图时后四张的顺序冰爪无法逐张核验，汇报时不要说成已逐张核对。
 
@@ -92,6 +95,7 @@ find ~/.hermes/cache/videos ~/.hermes/cache/documents -type f \
 | 快手 | 无标题 | 500（标题并入正文） |
 | Instagram | 无标题 | 2200（标题并入配文） |
 | X | 无标题 | 加权 280（Premium 25,000，超限拒绝不截断） |
+| TikTok | 90 | 4000（超限拒绝不截断） |
 | 公众号贴图 | 20 | 1000 |
 
 **文案：**
